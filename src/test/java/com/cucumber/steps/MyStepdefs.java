@@ -3,6 +3,7 @@ package com.cucumber.steps;
 import com.cucumber.driver.DriverManager;
 import com.cucumber.hooks.DriverHooks;
 import com.cucumber.pages.LoginPage;
+import com.cucumber.pages.ProfilePage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -15,16 +16,7 @@ import static com.cucumber.driver.DriverManager.getWebDriver;
 public class MyStepdefs //extends DriverHooks
 {
     LoginPage loginPage = new LoginPage();
-
-    @Before()
-    public void setupDriver() {
-        DriverManager.setupDriver();
-    }
-
-    @After()
-    public void quitDriver() {
-        DriverManager.quitDriver();
-    }
+    ProfilePage profilePage = new ProfilePage();
 
     @Given("I navigate to Otus main page by {string}")
     public void iNavigateToOtusMainPageByHttpsOtusRu(String url) {
@@ -37,12 +29,13 @@ public class MyStepdefs //extends DriverHooks
         loginPage.clickAuth();
     }
 
-    @Then("I should see button {string}")
-    public void iShouldSeeButtonMyCources(String butName) {
-    }
-
     @And("I enter {string} and {string} into loginField")
     public void iEnterLoginAndPassIntoLoginField(String login, String pass) {
         loginPage.auth(login, pass);
+    }
+
+    @Then("I should see h2 {string}")
+    public void iShouldSeeButtonMyCources(String butName) {
+        profilePage.checkLogin(butName);
     }
 }

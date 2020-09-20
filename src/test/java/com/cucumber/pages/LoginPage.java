@@ -18,39 +18,18 @@ import static java.lang.String.format;
 
 
 public class LoginPage extends BasePage {
-   // private Logger logger = LogManager.getLogger(LoginPage.class);
 
-   // @FindBy(css="button.header2__auth") //локатор кнопки раздела логина
     private String loginButton = "button.header2__auth";
-   // private WebElement loginButton;
 
-  //  @FindBy(css="input.js-email-input")  //локатор поля аккаунта
     private String accField = "input.js-email-input";
-  //  private WebElement accField;
 
-  //  @FindBy(css="input.js-psw-input")  //локатор поля пароля
     private String passField = "input.js-psw-input";
- //   private WebElement passField;
 
-  //  @FindBy(css="div.new-input-line>button")  //локатор кнопки логина
     private String logButton = "div.new-input-line>button";
-  //  private WebElement logButton;
-
-  /* public LoginPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }*/
-
-/*    public LoginPage open(String url) {
-        driver.get(url);
-     //   logger.info("Открыта страница "+"https://otus.ru\n");
-        return this;
-    } */
 
     public LoginPage clickAuth(){
        waitForElement(By.cssSelector(loginButton)).click();
-    //    loginButton.click();
-    //    logger.info("Перешли на подстраницу логина");
+
        return this;
     }
 
@@ -58,7 +37,6 @@ public class LoginPage extends BasePage {
         waitForElement(By.cssSelector(accField)).sendKeys(account);
         waitForElement(By.cssSelector(passField)).sendKeys(pass);
         waitForElement(By.cssSelector(logButton)).click();
-  //      logger.info("Залогинились на сайте");
 
         return new ProfilePage();
     }

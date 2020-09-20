@@ -1,19 +1,31 @@
 package com.cucumber.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import static org.junit.Assert.assertEquals;
 
 //        import org.apache.logging.log4j.LogManager;
 //        import org.apache.logging.log4j.Logger;
 
 public class ProfilePage extends BasePage {
-  //  private Logger logger = LogManager.getLogger(ProfilePage.class);
- //   public ProfilePage(WebDriver driver) { super(driver); }
 
-  /*  public PrivateDataPage openPrivateDataPage(String url) {
-        driver.get(url);
-//        logger.info("Перешли на страницу https://otus.ru/lk/biography/personal/");
+    private String titleCheck = "//h2[text()='Цифровые навыки от ведущих экспертов']";
 
-        return new PrivateDataPage(driver);
-    } */
+    private String progButton = "//a[contains(title(),'Программирование')]";
+
+    private String infraButton = "//a[contains(title(),'Инфраструктура')]";
+
+    private String secureButton = "//a[contains(title(),'Информационная безопасность')]";
+
+    private String scienceButton = "//a[contains(title(),'Data Science')]";
+
+    private String manageButton = "//a[contains(title(),'Управление')]";
+
+    public ProfilePage checkLogin(String butName){
+        assertEquals(butName, waitForElement(By.xpath(titleCheck)).getText());
+
+        return this;
+    }
 
 }
