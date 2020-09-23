@@ -3,6 +3,7 @@ package com.cucumber.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static java.lang.String.format;
 import static org.junit.Assert.assertEquals;
 
 //        import org.apache.logging.log4j.LogManager;
@@ -12,15 +13,13 @@ public class ProfilePage extends BasePage {
 
     private String titleCheck = "//h2[text()='Цифровые навыки от ведущих экспертов']";
 
-    private String progButton = "//a[contains(title(),'Программирование')]";
+    private String programName = "//a[contains(title(),'%s')]";
 
-    private String infraButton = "//a[contains(title(),'Инфраструктура')]";
+    public ProgramPage selectProgram(String streamName) {
+        waitForElement(By.xpath(format(programName, streamName))).click();
 
-    private String secureButton = "//a[contains(title(),'Информационная безопасность')]";
-
-    private String scienceButton = "//a[contains(title(),'Data Science')]";
-
-    private String manageButton = "//a[contains(title(),'Управление')]";
+        return new ProgramPage();
+    }
 
     public ProfilePage checkLogin(String butName){
         assertEquals(butName, waitForElement(By.xpath(titleCheck)).getText());

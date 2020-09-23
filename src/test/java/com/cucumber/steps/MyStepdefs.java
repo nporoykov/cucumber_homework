@@ -4,6 +4,7 @@ import com.cucumber.driver.DriverManager;
 import com.cucumber.hooks.DriverHooks;
 import com.cucumber.pages.LoginPage;
 import com.cucumber.pages.ProfilePage;
+import com.cucumber.pages.ProgramPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -17,6 +18,7 @@ public class MyStepdefs //extends DriverHooks
 {
     LoginPage loginPage = new LoginPage();
     ProfilePage profilePage = new ProfilePage();
+    ProgramPage programPage = new ProgramPage();
 
     @Given("I navigate to Otus main page by {string}")
     public void iNavigateToOtusMainPageByHttpsOtusRu(String url) {
@@ -37,5 +39,15 @@ public class MyStepdefs //extends DriverHooks
     @Then("I should see h2 {string}")
     public void iShouldSeeButtonMyCources(String butName) {
         profilePage.checkLogin(butName);
+    }
+
+    @When("I select tab {string}")
+    public void iSelectTabTabName(String programName) {
+         profilePage.selectProgram(programName);
+    }
+
+    @Then("I should see <numberOfCourses> courses")
+    public void iShouldSeeNumberOfCoursesCourses(Integer programNumber) {
+        programPage.checkProgramNumbers(programNumber);
     }
 }
