@@ -27,17 +27,17 @@ public class LoginPage extends BasePage {
 
     private String logButton = "div.new-input-line>button";
 
-    public LoginPage clickAuth(){
+    public void clickAuth(){
        waitForElement(By.cssSelector(loginButton)).click();
 
-       return this;
+     //  return this;
     }
 
-    public ProfilePage auth(String account, String pass) {
+    public void auth(String account, String pass) {
         waitForElement(By.cssSelector(accField)).sendKeys(account);
         waitForElement(By.cssSelector(passField)).sendKeys(pass);
         waitForElement(By.cssSelector(logButton)).click();
 
-        return new ProfilePage();
+       // return new ProfilePage();
     }
 }

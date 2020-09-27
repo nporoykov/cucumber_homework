@@ -8,10 +8,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProgramPage extends BasePage{
 
-   private String programCount = "//div[contains(text(), 'Курсов:')]";
+  // private String programCount = "//div[@class ='title-new__info']//div[contains(text(), 'В разработке:')]";
+  private String programCount = "//div[@class ='title-new__info']/div[2]";
 
-   public void checkProgramNumbers(Integer Count){
+
+    public Integer checkProgramNumbers(){
         String courses = waitForElement(By.xpath(programCount)).getText();
-        assertThat(Count).isEqualTo(Integer.valueOf(courses.substring(courses.indexOf(' ')).trim()));
+        return Integer.valueOf(courses.substring(courses.length()-1));
+     //   assertThat(Count).isEqualTo(Integer.valueOf(courses.substring(courses.length()-1)));
    }
 }

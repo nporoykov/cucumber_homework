@@ -17,22 +17,38 @@ public class ProfilePage extends BasePage {
 
     private String programName = "//div[@id='categories_id']//a[@title='%s']";
 
-    public ProgramPage selectProgram(String streamName) {
+    private String headerName = "//div[contains(@class, 'header2_subheader-container__right')]//a[@title='%s']";
+
+    public void selectProgram(String streamName) {
         try{
-            waitForElement(By.xpath("//div[contains(@class,'new-log-reg')]")).click();   //<div class="new-log-reg">
-            //  logger.info("Подтвержден регион");
+            waitForElement(By.xpath("//button[contains(text(), 'Согласен')]")).click();
+            waitForElement(By.xpath("//div[contains(@class, 'new-log-reg')]")).click();
+            //<div class="new-log-reg">
+            //  logger.info("");
         }catch (Exception e){
-          //  logger.info("Нет выбора региона");
+          //  logger.info("");
         }
         waitForElement(By.xpath(format(programName, streamName))).click();
-
-        return new ProgramPage();
+      //  return new ProgramPage();
     }
 
-    public ProfilePage checkLogin(String butName){
+    public void selectHeader(String headerNameName) {
+        try{
+            waitForElement(By.xpath("//button[contains(text(), 'Согласен')]")).click();
+            waitForElement(By.xpath("//div[contains(@class, 'new-log-reg')]")).click();
+            //<div class="new-log-reg">
+            //  logger.info("");
+        }catch (Exception e){
+            //  logger.info("");
+        }
+        waitForElement(By.xpath(format(headerName, headerNameName))).click();
+        //  return new ProgramPage();
+    }
+
+    public void checkLogin(String butName){
         assertEquals(butName, waitForElement(By.xpath(titleCheck)).getText());
 
-        return this;
+      //  return this;
     }
 
 }
